@@ -36,7 +36,7 @@ Both client and server can perform the "active close".
 Like server sent SYN with ACK.
 
 ### TCP State Transition Diagram
-![TCP State Transition Diagram](tcp_state_transition_diagram.png)
+![TCP State Transition Diagram](images/tcp_state_transition_diagram.png)
 
 ### TIME_WAIT
 TIME_WAIT is 2 * MSL(maximum segment lifetime).  
