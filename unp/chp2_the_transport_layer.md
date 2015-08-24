@@ -32,7 +32,7 @@ Four-way Termination
 
 Both client and server can perform the "active close".
 
-### piggyback捎带
+### piggyback(捎带)
 Like server sent SYN with ACK.
 
 ### TCP State Transition Diagram
