@@ -1,18 +1,20 @@
 ## Chapter 2. The Transport Layer: TCP, UDP, and SCTP
 ### TCP Options
-Each SYN can contain TCP options.
+Each SYN can contain TCP options:
 
-- MSS(maximum segment szie): With this option, the TCP sending the SYN announces its maximum segment size, the maximum amount of data that it is willing to accept in each TCP segment, on this connection. Each end uses the other end's MSS value as the maximum size of a segment.
+* MSS(maximum segment szie): With this option, the TCP sending the SYN announces its maximum segment size, the maximum amount of data that it is willing to accept in each TCP segment, on this connection. Each end uses the other end's MSS value as the maximum size of a segment.
 
-- Window scale option: due to that the file in the TCP header corresponding to maximum advertised window is 65535bytes(16 bits, 2^16). This new option specifies that the window can be scaled(left-shifted) by 0-14 bits. So the maximum window size is (65535 * 2^14). Both end-systems must support this option.
+* Window scale option: due to that the file in the TCP header corresponding to maximum advertised window is 65535bytes(16 bits, 2^16). This new option specifies that the window can be scaled(left-shifted) by 0-14 bits. So the maximum window size is (65535 * 2^14). Both end-systems must support this option.
 
-- Timestamp option.
+* Timestamp option.
 
-`Window scale option` and `Timestamp option` are called "long fa pipe options".
+> `Window scale option` and `Timestamp option` are called "long fa pipe options".
+
 
 ### TCP Connection Establishment
 Three-Way Handshake  
 ![TCP 3-way handshake](images/tcp_3-way_handshake.png)
+
 prerequisite: The server end ready to accept an incoming connection.(passive open: socket, bind, listen)
 
 1. The client(active open): call `connect`, which will send a "synchronize"(SYN) segment, with initial sequence number(for instance, "J") and IP header, TCP header and possible TCP options.
