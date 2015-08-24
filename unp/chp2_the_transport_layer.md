@@ -49,6 +49,8 @@ TIME_WAIT state:
 
 ### SCTP Connection Establishment
 Four-way handshake  
+![SCTP Four Way Handshake](images/sctp_4-way_handshake.png)
+
 prerequisite: The server end ready to accept an incoming connection.(passive open: socket, bind, listen)  
 
 1. (active open)Client call `open` or send a message to implicitly open a association. This causes the client to send an INIT message to tell the client's list of IP addresses, initial sequence number, initiation tag to identify all packets in this association, number of outbound streams the client is requesting, and number of inbound streams the client can support.  
@@ -66,6 +68,7 @@ Each side chooses a primary destination address.
 
 ### Association Termination
 Unlike TCP, SCTP does not permit a "half-closed" association. When one end shuts down an association, the other end must stop sending new data.
+![SCTP association close](images/sctp_association_close.png)
 
 1. (active close)The client call `close` ande sent SHUTDOWN.
 2. (passive close)The server `read` and send back SHUTDOWN-ACK.
