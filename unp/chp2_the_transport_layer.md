@@ -8,7 +8,7 @@ Each SYN can contain TCP options:
 
 * Timestamp option.
 
-> `Window scale option` and `Timestamp option` are called "long fa pipe options".
+> `Window scale option` and `Timestamp option` are called "long fat pipe options".
 
 
 ### TCP Connection Establishment
