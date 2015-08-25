@@ -1,8 +1,8 @@
-# DevOps Troubleshooting: Linux Server Best Practices 学习笔记
+# DevOps Troubleshooting: Linux Server Best Practices
 
 ## System Load
 ### 什么是system load
-load average = 'runnable'(using the CPU or waiting) 或者 uninterruptible(waiting for I/O)的进程平均数
+`load average` = `runnable`(using the CPU or waiting) 或者 `uninterruptible`(waiting for I/O)的进程平均数
 
 ### 查看load:
 
