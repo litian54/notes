@@ -260,4 +260,22 @@ Three approaches:
 used for both infrastructure and ad hoc operation
 * hybrid coordination function (HCF)
 
-* 未完成....*
+### Tunneling Basics
+> Tnuneling is the idea of carrying lower-layer traffic in higher-layer (or equal-layer) packets.
+
+* `Generic Routing Encapsulation (GRE)`:
+    ![GRE header](images/gre_header.png)
+    * `C` (checksum): whether a checksum is present. If it is, the `Checksum` field contains the same type of checksum found in many Internet-related protocols.
+    * `Reserved1`: if the `C` field is presentm the `Reserved1` is also present and is set to 0.
+    **extend**:
+    * `Key`: present if set to 1, the `Key` field is arranged to be a common value in multiple packets, indicating that they belong to the same flow of packets. 
+    * `Sequence Number`: present if set to 1, is used in order to reorder packets.
+    > GRE tunnels are typically used within the network infrastructure to carry traffic between ISPs or within an enterprise intranet to serve branch offices and are not necessarily encrypted, although GRE tunnels can be combined with IPsec. GRE carries its traffic using IPv4 or IPv6 and as such is a layer 3 tunneling technology. 
+* `Point-to-Point Tunneling Protocol (PPTP)`:
+    ![PPTP header](images/pptp_header.png)
+    * `K`: if set to 1, `Key` field is present.
+    * `S`: if set to 1, `Sequence Number` field, which will holds the largest packet number seen by the peer.
+    * `A`: if set to 1, `Acknoledgement` field is present.
+* `Layer 2 Tunneling Protocol (L2TP)`: is often used with security at the IP layer (IPsec) because L2TP by itself does not provide security.
+
+*未完成....*
