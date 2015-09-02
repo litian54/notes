@@ -385,3 +385,59 @@ nameserver 10.0.2.3
 ```
 并尝试`ping 10.0.2.3`
 
+### Can I Route to the Remote Host?
+在确保DNS没问题的情况下，检查
+```bash
+$ traceroute 10.1.2.5
+traceroute to 10.1.2.5 (10.1.2.5), 30 hops max, 40 byte packets
+1 10.1.1.1 (10.1.1.1) 5.432 ms 5.206 ms 5.472 ms
+2 web1 (10.1.2.5) 8.039 ms 8.348 ms 8.643 ms
+```
+
+### Is the Remote Port Open?
+检查远端port是否打开，
+```bash
+$ telnet 10.1.2.5 80
+Trying 10.1.2.5...
+telnet: Unable to connect to remote host: Connection refused
+```
+或者
+```bash
+$ nmap -p 80 10.1.2.5
+Starting Nmap 4.62 ( http://nmap.org ) at 2009-02-05 18:49 PST
+Interesting ports on web1 (10.1.2.5):
+PORT STATE SERVICE
+80/tcp filtered http
+```
+
+### Test the Remote Host Locally
+检查运行app的server，网路端正否正常工作。  
+
+#### 检查端口是否监听
+```bash
+$ sudo netstat -lnp | grep :80
+tcp 0 0 0.0.0.0:80 0.0.0.0:* LISTEN 919/apache
+```
+#### Firewall Rules
+有可能iptables的配置drop掉所有的packets
+```bash
+$ sudo /sbin/iptables -L
+Chain INPUT (policy DROP)
+target prot opt source destination
+Chain FORWARD (policy DROP)
+target prot opt source destination
+Chain OUTPUT (policy DROP)
+target prot opt source destination
+```
+也有可能block掉了某个端口，比如80
+```bash
+$ sudo /sbin/iptables -L -n
+Chain INPUT (policy ACCEPT)
+target prot opt source destination
+REJECT tcp -- 0.0.0.0/0 0.0.0.0/0 tcp dpt:80 reject-with
+Êicmp-port-unreachable
+Chain FORWARD (policy ACCEPT)
+target prot opt source destination
+Chain OUTPUT (policy ACCEPT)
+target prot opt source destination
+```
