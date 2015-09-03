@@ -251,8 +251,8 @@ root@vagrant-ubuntu-trusty:~# dmesg | less
     ```bash
     # fsck -y -C /dev/sda5
     ```
-        * `-y`，yes
-        * `-C`, progress bar
+* `-y`，yes
+* `-C`, progress bar
 * 用backup的superblock修复，例如对ext-based的文件系统:
     ```bash
     # mke2fs -n /dev/sda5
