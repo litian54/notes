@@ -246,20 +246,20 @@ root@vagrant-ubuntu-trusty:~# dmesg | less
 ### Repair Corrupted File Systems
 `fsck`命令检查文件系统:
 
-    * 首先确定unmounted文件系统，否则fsck会破坏文件系统。(mount查看，umount <devicename>卸载文件系统)
-    * 用fsck检查，如`/home`之前挂载在`/dev/sda5`
+* 首先确定unmounted文件系统，否则fsck会破坏文件系统。(mount查看，umount <devicename>卸载文件系统)
+* 用fsck检查，如`/home`之前挂载在`/dev/sda5`
     ```bash
     # fsck -y -C /dev/sda5
     ```
         * `-y`，yes
         * `-C`, progress bar
-    * 用backup的superblock修复，例如对ext-based的文件系统:
+* 用backup的superblock修复，例如对ext-based的文件系统:
     ```bash
     # mke2fs -n /dev/sda5
     # fsck -b 8193 -y -C /dev/sda5
     ```
-        * `-n` option是list所有的superblocks，如果不加`-n`，文件系统会被格式化。
-        * 根据superblocks的值，加`-b`参数修复文件系统
+* `-n` option是list所有的superblocks，如果不加`-n`，文件系统会被格式化。
+* 根据superblocks的值，加`-b`参数修复文件系统
 
 ### Repair Software RAID
 暂时略过
