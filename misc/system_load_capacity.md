@@ -77,10 +77,12 @@ TCP window size: 2.50 MByte (default)
 #### File Descriptors Limit
 * For whole system:
     * temporary modification
+
         ```bash
         echo 1000000 > /proc/sys/fs/file-max
         ```
     * permanent modification
+
         ```bash
         root@vagrant-ubuntu-trusty:~# vim /etc/sysctl.conf
     
