@@ -2,9 +2,10 @@
 
 ## 衡量参数与指标
 
-* `network bandwidth(带宽)`
+* `Network Bandwidth(带宽)`
+* `System Configuration(系统配置)`
 
-### network bandwidth(带宽)
+### Network Bandwidth(带宽)
 tools:
 
 * netcat(nc)
@@ -66,3 +67,31 @@ TCP window size: 2.50 MByte (default)
 [ ID] Interval       Transfer     Bandwidth
 [  3]  0.0-10.0 sec  24.5 GBytes  21.0 Gbits/sec
 ```
+
+### System Configuration
+
+* File Descriptors Limit(文静描述符限制): everything is a file. 主要针对sockets
+* Process/Thread Number Limit(进程/线程数限制)
+* The Kernel Configuration of TCP
+
+#### File Descriptors Limit
+* For whole system:
+    * temporary modification
+        ```bash
+        echo 1000000 > /proc/sys/fs/file-max
+        ```
+    * permanent modification
+        ```bash
+        root@vagrant-ubuntu-trusty:~# vim /etc/sysctl.conf
+    
+        ############################
+        # File Descriptors
+        fs.file-max = 1000000
+        ############################
+    
+        # reload sysctl variables
+        root@vagrant-ubuntu-trusty:~# sysctl -p
+        ```
+* For one process:
+    * `ulimit -n`进行查看和修改
+    * 修改*/etc/security/limits.conf*中的nofile
